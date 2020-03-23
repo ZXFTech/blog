@@ -11,6 +11,7 @@ const logger = require('koa-logger')
 
 
 const blog  = require('./routes/blog')
+const user  = require('./routes/user')
 
 // 错误处理
 onerror(app)
@@ -33,5 +34,6 @@ app.use(async (ctx, next) => {
 
 // 路由添加
 app.use(blog.routes(),blog.allowedMethods())
+app.use(user.routes(),user.allowedMethods())
 
 module.exports = app;

@@ -7,7 +7,10 @@ const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const session = require('koa-session')
 const logger = require('koa-logger')
+const statics = require('koa-static')
+const path = require('path')
 
 
 const blog  = require('./routes/blog')
@@ -22,7 +25,9 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname +'/public'))
+const index = path.resolve(__dirname,'../public')
+console.log('index',index)
+app.use(require('koa-static')(index))
 
 // 请求方法，路径及耗时
 app.use(async (ctx, next) => {
@@ -31,6 +36,17 @@ app.use(async (ctx, next) => {
     const ms = new Date() - start
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
   })
+
+  const sessionConfig = {
+    // 配置 cookie
+      path:'/',
+      httpOnly:true,
+      maxAge:24*60*60*1000
+  }
+
+// cookie 处理
+app.keys = ['feline']  // 加密设置
+app.use(session(sessionConfig,app))
 
 // 路由添加
 app.use(blog.routes(),blog.allowedMethods())

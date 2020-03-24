@@ -30,7 +30,10 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.8.6",
     "cross-env": "^7.0.2",
-    "nodemon": "^1.19.4"
+    "koa-generic-session": "^2.0.4",
+    "koa-session": "^5.13.1",
+    "nodemon": "^1.19.4",
+    "redis": "^3.0.2"
   },
   "repository": {
     "type": "git",

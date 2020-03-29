@@ -17,10 +17,11 @@ router.get('/', async (ctx, next) => {
 router.get('/list', async (ctx, next) => {
     try {
         const result = await getList()
-        ctx.body = new SuccessModel(result)
+        console.log(result)
+        ctx.body = result
     } catch (err) {
         console.error(err)
-        ctx.body = new ErrorModel(err)
+        ctx.body = err
     }
 })
 
@@ -28,15 +29,17 @@ router.get('/detail', async (ctx, next) => {
     try {
         const blogId = ctx.query.id
         const result = await getDetail(blogId)
-        ctx.body = new SuccessModel(result)
+        ctx.body=result
 
     } catch (err) {
-        ctx.body = new ErrorModel(err)
+        console.log('err',err)
+        ctx.body = err
     }
 })
 
 router.post('/add', async (ctx, next) => {
     try {
+        console.log(ctx.request.body)
         const result = await addBlog(ctx.request.body)
         ctx.body = new SuccessModel(result)
 

@@ -1,5 +1,8 @@
 require("@babel/register")({
-    extensions: [".es6", ".es", ".jsx", ".js", ".mjs"]
+    only:[
+      /server/
+    ]
+    // extensions: [".es6", ".es", ".jsx", ".js", ".mjs"]
 })
 
 const {SERVICE_CONFIG} = require('./config/server')
@@ -11,7 +14,7 @@ const server = http.createServer(app.callback())
 
 ConnectDB().then(async ()=>{
 
-  server.listen(3000)
+  server.listen(8000)
   server.on('error',onError)
   server.on('listening',onListening)
   return

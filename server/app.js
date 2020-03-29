@@ -11,7 +11,7 @@ const session = require('koa-session')
 const logger = require('koa-logger')
 const statics = require('koa-static')
 const path = require('path')
-
+const cors = require('koa-cors')
 
 const blog  = require('./routes/blog')
 const user  = require('./routes/user')
@@ -28,6 +28,7 @@ app.use(logger())
 const index = path.resolve(__dirname,'../public')
 console.log('index',index)
 app.use(require('koa-static')(index))
+app.use(cors())
 
 // 请求方法，路径及耗时
 app.use(async (ctx, next) => {

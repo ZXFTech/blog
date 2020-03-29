@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const blogSchema = new Schema({
     title: String,
     author: String,
-    body: String,
+    content: String,
     comments:[{
         name:String,
         contact:{

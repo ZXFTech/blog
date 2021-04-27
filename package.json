@@ -39,7 +39,7 @@
     "koa-generic-session": "^2.0.4",
     "koa-session": "^5.13.1",
     "nodemon": "^1.19.4",
-    "redis": "^3.0.2"
+    "redis": "^3.1.1"
   },
   "repository": {
     "type": "git",
